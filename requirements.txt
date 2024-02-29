@@ -10,3 +10,4 @@ joblib
 tqdm
 scikit-learn
 textract
+madgrad
