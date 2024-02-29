@@ -1,0 +1,13 @@
+torch
+transformers
+peft
+accelerate
+datasets
+numpy
+pandas
+seaborn
+joblib
+tqdm
+scikit-learn
+textract
+madgrad
