@@ -11,3 +11,5 @@ tqdm
 scikit-learn
 textract
 madgrad
+evaluate
+seqeval
