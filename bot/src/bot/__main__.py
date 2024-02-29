@@ -90,6 +90,11 @@ async def start(message: types.Message):
 # setup documment file recieve
 @dp.message_handler(content_types=['document'])
 async def handle_docs_photo(message: types.Message):
+    # save document to storage
+    file_name = message.document.file_name
+    file_path = f"{STORAGE_PATH}/{file_name}"
+    await message.document.download(destination=file_path)
+    # proccess in ml model
     log.info(f"User {message.from_user.id} sent a document")
     await message.answer(reply.parsing_result("test"), reply_markup=parsing_markup)
 

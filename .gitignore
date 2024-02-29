@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# bot storage folder
+bot/storage/
+
 # Distribution / packaging
 .Python
 build/
