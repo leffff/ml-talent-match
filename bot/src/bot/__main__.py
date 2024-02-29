@@ -1,6 +1,7 @@
 import os
 import logging
 import asyncio
+import json
 import signal
 from datetime import datetime
 from aiogram import Bot, Dispatcher, executor, types
@@ -18,6 +19,8 @@ load_dotenv()
 # Logging
 # Create a logger instance
 log = logging.getLogger('main.py-aiogram')
+
+
 
 # Create logfile
 # logging.basicConfig(filename="main.py.log")
@@ -75,7 +78,7 @@ class GracefulKiller:
 TELEGRAM_API_TOKEN = os.getenv('TG_TOKEN')
 STORAGE_PATH = os.getenv('STORAGE_PATH')
 
-bot = Bot(token=TELEGRAM_API_TOKEN, parse_mode=ParseMode.MARKDOWN_V2)
+bot = Bot(token=TELEGRAM_API_TOKEN)
 dp = Dispatcher(bot)
 
 # setup start command
@@ -88,7 +91,7 @@ async def start(message: types.Message):
 @dp.message_handler(content_types=['document'])
 async def handle_docs_photo(message: types.Message):
     log.info(f"User {message.from_user.id} sent a document")
-    await message.answer(reply.parsing_result('test'), reply_markup=parsing_markup)
+    await message.answer(reply.parsing_result("test"), reply_markup=parsing_markup)
 
 # handle parsing result callback
 @dp.callback_query_handler(lambda c: c.data == 'ok')

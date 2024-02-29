@@ -3,7 +3,7 @@ import re
 
 def escape_chars(text: str) -> str:
     """Escapes specific cahrs for MARDOWN_V2"""
-    return re.sub(r'([|{~}+#>!=\-.])', r'\\\1', text)
+    return re.sub(r'([|{~}+#>\(\)!=\-.])', r'\\\1', text)
 
 def welcome_back(name:str) -> str:
     return escape_chars(f"""С возвращением, {name}!""")
