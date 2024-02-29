@@ -1,0 +1,41 @@
+version: "3"
+name: itam-dev-bot
+volumes:
+  redis:
+  redis-config:
+  postgres-data:
+
+services:
+  redis:
+    image: redis:latest
+    command: redis-server
+    volumes:
+      - "redis:/var/lib/redis"
+      - "redis-config:/usr/local/etc/redis/redis.conf"
+    ports:
+      - "6379:6379"
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+        TZ: 'GMT+3'
+        PGTZ: 'GMT+3'
+    env_file:
+      - ../.env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  bot:
+      build:
+        context: ../
+        dockerfile: ./docker/Dockerfile
+      restart: always
+      env_file:
+        - ../.env
+      environment:
+        - "POSTGRES_HOST=postgres"
+        - "TZ=Europe/Moscow"
+      volumes:
+        - .:/app
+      command: python3 src/main.py

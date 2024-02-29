@@ -4,7 +4,7 @@ import textract
 class ResumeParser:
     def __init__(self):
         pass
-        
+
     def read_pdf(self, filename: str) -> str:
         text = textract.process(filename).decode("utf-8")
         return text
@@ -17,7 +17,7 @@ class ResumeParser:
         text = textract.process(filename).decode("utf-8")
         return text
 
-    def read_image(self, filename): 
+    def read_image(self, filename):
         text = textract.process(filename).decode("utf-8") # можно доабавить аргумент language, но надо качать тесеракт textract.process(filename, language="ru").decode("utf-8")
         return text
 
